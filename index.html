@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Built For Saturdays | Elite NIL Representation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-red: #d32f2f;
+            --dark-bg: #0a0a0a;
+            --card-bg: #161616;
+            --text-light: #ffffff;
+            --text-dim: #b3b3b3;
+            --accent-gray: #2a2a2a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            color: var(--text-light);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0,0,0,0.95);
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-red);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo img { height: 40px; width: auto; vertical-align: middle; }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-red); }
+
+        /* Sections */
+        section { padding: 100px 10%; }
+        .container { max-width: 1200px; margin: auto; }
+        h2 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 30px; border-left: 5px solid var(--primary-red); padding-left: 15px; }
+
+        /* Header / Home */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1566577739112-5180d4bf9390?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero .main-logo { max-width: 450px; width: 90%; margin-bottom: 30px; filter: drop-shadow(0px 0px 20px rgba(211, 47, 47, 0.4)); }
+        .hero h1 { display: none; } /* Hidden because logo has text, but kept for SEO */
+        .hero p { max-width: 800px; font-size: 1.3rem; color: var(--text-light); font-weight: 300; letter-spacing: 0.5px; }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 50px;
+            border: 1px solid var(--accent-gray);
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .service-card:hover { border-color: var(--primary-red); transform: translateY(-10px); background: #1a1a1a; }
+        .service-card i { font-size: 3.5rem; color: var(--primary-red); margin-bottom: 20px; }
+        .service-card h3 { text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; font-size: 1.5rem; }
+
+        /* About Section */
+        .team-photo-main { width: 100%; height: 500px; object-fit: cover; margin: 40px 0; border: 1px solid var(--accent-gray); }
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; }
+        .bio-img { width: 100%; height: 450px; object-fit: cover; border-bottom: 4px solid var(--primary-red); margin-bottom: 20px; }
+        .bio-content h3 { font-size: 1.8rem; text-transform: uppercase; color: var(--primary-red); }
+        .bio-content h4 { font-weight: 400; margin-bottom: 15px; color: var(--text-dim); }
+        .stats-list { list-style: none; margin-top: 15px; }
+        .stats-list li { margin-bottom: 8px; font-weight: bold; }
+        .stats-list li::before { content: "• "; color: var(--primary-red); }
+
+        /* Form */
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; }
+        form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        form input, form select, form textarea { background: #000; border: 1px solid var(--accent-gray); padding: 15px; color: white; width: 100%; }
+        form .full-width { grid-column: span 2; }
+        form button { grid-column: span 2; background: var(--primary-red); color: white; border: none; padding: 20px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-size: 1rem; }
+        form button:hover { background: #b22828; }
+
+        footer { text-align: center; padding: 60px; background: #000; border-top: 1px solid var(--accent-gray); color: var(--text-dim); }
+        footer img { max-width: 150px; margin-bottom: 20px; opacity: 0.6; }
+
+        @media (max-width: 768px) {
+            .hero .main-logo { max-width: 300px; }
+            .team-grid, .contact-wrapper { grid-template-columns: 1fr; }
+            form { grid-template-columns: 1fr; }
+            form button, form .full-width { grid-column: span 1; }
+            nav { justify-content: center; flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-logo">
+        <img src="logo.jpg" alt="B4S Logo">
+    </div>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<header id="home" class="hero">
+    <img src="logo.jpg" alt="Built For Saturdays" class="main-logo">
+    <h1>Built For Saturdays</h1>
+    <p>As former Division 1 athletes, we bring firsthand insight into what it takes to build and protect a student-athlete’s NIL value. We guide athletes in strategically developing, monetizing, and safeguarding their NIL as they progress toward the professional level.</p>
+</header>
+
+<section id="goal">
+    <div class="container" style="text-align: center;">
+        <h2>Our Goal</h2>
+        <p style="font-size: 1.5rem; max-width: 900px; margin: auto; font-weight: 300;">“We help athletes turn NIL into lasting opportunity through smart strategy, brand alignment, and disciplined execution—built for today, positioned for what’s next.”</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-user-check"></i>
+                <h3>Representation</h3>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Public Relations</h3>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-file-signature"></i>
+                <h3>Negotiating</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" style="background: #0f0f0f;">
+    <div class="container">
+        <h2>Our Story</h2>
+        <p>We are former Division 1 teammates from Bryant University who lived the grind together. We founded Built For Saturdays to bridge the gap between locker room reality and NIL opportunity. By combining a record-breaking All-American career with deep strategic experience, we provide athletes the blueprint to build, monetize, and protect their brands from the college level to the pros.</p>
+        
+        <img src="team.jpg" alt="Marc and Landon" class="team-photo-main" onerror="this.style.display='none'">
+
+        <div class="team-grid">
+            <div class="bio-card">
+                <img src="marc.jpg" alt="Marc Taglieri" class="bio-img" onerror="this.src='https://via.placeholder.com/400x500?text=MARC+PHOTO'">
+                <div class="bio-content">
+                    <h3>Marc Taglieri</h3>
+                    <h4>Co-Founder | 2024 Graduate</h4>
+                    <p>Marc brings a high football IQ and a reputation for disciplined execution to the NIL space. A four-year letter winner at Tight End for Bryant University, Marc appeared in nearly 40 games, recording career touchdowns against major opponents like Delaware, Richmond, and Akron.</p>
+                    <ul class="stats-list">
+                        <li>D1 Veteran: 39+ games played at the Division 1 level.</li>
+                        <li>Versatile Playmaker: Career TDs against FBS and top FCS programs.</li>
+                        <li>Academic Leader: Multiple NEC Academic Honor Roll selections.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bio-card">
+                <img src="landon.jpg" alt="Landon Ruggieri" class="bio-img" onerror="this.src='https://via.placeholder.com/400x500?text=LANDON+PHOTO'">
+                <div class="bio-content">
+                    <h3>Landon Ruggieri</h3>
+                    <h4>Co-Founder | All-American WR | 2024 Graduate</h4>
+                    <p>Landon is one of the most prolific wide receivers in Bryant University history. A CAA First-Team selection and All-American, he led the nation in receiving touchdowns (15) in 2024. Landon’s career was defined by record-breaking production, finishing second all-time in program history.</p>
+                    <ul class="stats-list">
+                        <li>Nation-Leader: #1 in D1 (FCS) receiving touchdowns in 2024.</li>
+                        <li>Record Setter: Set the DI program record for single-season receptions (69).</li>
+                        <li>Elite Honors: All-American, 2x All-New England, and First-Team All-CAA.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="clients">
+    <div class="container">
+        <h2>Our Clients</h2>
+        <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <div class="service-card" style="padding: 20px; text-align: left;">
+                <div style="height:350px; background: #222; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #444;">[ Athlete Photo ]</div>
+                <h3 style="font-size: 1.2rem;">Athlete Name</h3>
+                <p style="color: var(--primary-red); font-weight: bold; font-size: 0.9rem;">School & Sport</p>
+                <p style="font-size: 0.85rem; margin-top: 10px; color: var(--text-dim);">Career highlights and notable stats. Include touchdowns, career highs, and key accolades.</p>
+                <div style="margin-top: 15px;">
+                    <a href="#" style="color: white; margin-right: 10px;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: white; margin-right: 10px;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: white;"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" style="background: #000;">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div>
+                <h2>Contact Us</h2>
+                <p style="margin-bottom: 30px; color: var(--text-dim);">Ready to protect and grow your NIL value? Reach out to the team at Built For Saturdays.</p>
+                <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="color: var(--primary-red); width: 25px;"></i> built4saturdays@gmail.com</p>
+                <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--primary-red); width: 25px;"></i> 239-470-5512</p>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--primary-red); width: 25px;"></i> 97A Robey Street, Dorchester, MA 02125</p>
+            </div>
+
+            <form action="https://formspree.io/f/mqelbrbe" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="number" name="age" placeholder="Age">
+                <input type="text" name="height" placeholder="Height">
+                <input type="text" name="weight" placeholder="Weight">
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <input type="email" name="email" placeholder="Email Address" required class="full-width">
+                <input type="text" name="address" placeholder="Address" class="full-width">
+                <input type="text" name="school_name" placeholder="School Name">
+                <select name="school_type">
+                    <option value="high-school">High School</option>
+                    <option value="college">College</option>
+                </select>
+                <input type="text" name="sport" placeholder="Sport">
+                <input type="text" name="position" placeholder="Position Played">
+                <textarea name="social_links" placeholder="Social Media Links (Instagram, TikTok, Twitter, Facebook)" rows="4" class="full-width"></textarea>
+                <button type="submit">Submit Recruitment Form</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <img src="logo.jpg" alt="B4S Logo">
+    <p>&copy; 2024 Built For Saturdays | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
