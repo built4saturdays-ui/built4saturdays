@@ -38,7 +38,8 @@
             z-index: 1000;
         }
 
-        .nav-logo img { height: 40px; width: auto; vertical-align: middle; }
+        /* CHANGE: Made logo circular */
+        .nav-logo img { height: 45px; width: 45px; object-fit: cover; border-radius: 50%; vertical-align: middle; border: 1px solid var(--accent-gray); }
 
         .nav-links a {
             color: white;
@@ -71,8 +72,9 @@
             background-position: center;
         }
 
-        .hero .main-logo { max-width: 450px; width: 90%; margin-bottom: 30px; filter: drop-shadow(0px 0px 20px rgba(211, 47, 47, 0.4)); }
-        .hero h1 { display: none; } /* Hidden because logo has text, but kept for SEO */
+        /* CHANGE: Made main hero logo circular */
+        .hero .main-logo { max-width: 300px; width: 300px; height: 300px; object-fit: cover; border-radius: 50%; margin-bottom: 30px; filter: drop-shadow(0px 0px 20px rgba(211, 47, 47, 0.4)); border: 2px solid var(--primary-red); }
+        .hero h1 { display: none; } 
         .hero p { max-width: 800px; font-size: 1.3rem; color: var(--text-light); font-weight: 300; letter-spacing: 0.5px; }
 
         /* Services Grid */
@@ -114,14 +116,23 @@
         form button:hover { background: #b22828; }
 
         footer { text-align: center; padding: 60px; background: #000; border-top: 1px solid var(--accent-gray); color: var(--text-dim); }
-        footer img { max-width: 150px; margin-bottom: 20px; opacity: 0.6; }
+        /* CHANGE: Made footer logo circular */
+        footer img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 20px; opacity: 0.6; }
 
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .hero .main-logo { max-width: 300px; }
+            /* CHANGE: Centered all text and elements for mobile */
+            body, html { overflow-x: hidden; }
+            section { padding: 60px 5%; text-align: center; }
+            h2 { border-left: none; border-bottom: 3px solid var(--primary-red); padding-left: 0; padding-bottom: 10px; display: inline-block; }
+            
+            .hero .main-logo { max-width: 220px; height: 220px; }
             .team-grid, .contact-wrapper { grid-template-columns: 1fr; }
             form { grid-template-columns: 1fr; }
             form button, form .full-width { grid-column: span 1; }
-            nav { justify-content: center; flex-direction: column; gap: 15px; }
+            nav { justify-content: center; flex-direction: column; gap: 15px; text-align: center; }
+            .nav-links { margin: 0; padding: 0; }
+            .nav-links a { margin: 0 10px; font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -142,7 +153,7 @@
 <header id="home" class="hero">
     <img src="logo.jpg" alt="Built For Saturdays" class="main-logo">
     <h1>Built For Saturdays</h1>
-    <p>As former Division 1 athletes, we bring firsthand insight into what it takes to build and protect a student-athlete’s NIL value. We guide athletes in strategically developing, monetizing, and safeguarding their NIL as they progress toward the professional level.</p>
+    <p>As former Division 1 athletes, we bring firsthand insight into what it takes to build and protect a student-athlete’s NIL value.</p>
 </header>
 
 <section id="goal">
@@ -180,7 +191,7 @@
                 <div class="bio-content">
                     <h3>Marc Taglieri</h3>
                     <h4>Co-Founder | 2024 Graduate</h4>
-                    <p>Marc brings a high football IQ and a reputation for disciplined execution to the NIL space. A four-year letter winner at Tight End for Bryant University, Marc appeared in nearly 40 games, recording career touchdowns against major opponents like Delaware, Richmond, and Akron.</p>
+                    <p>Marc brings a high football IQ and a reputation for disciplined execution to the NIL space. A four-year letter winner at Tight End for Bryant University with an MBA.</p>
                     <ul class="stats-list">
                         <li>D1 Veteran: 39+ games played at the Division 1 level.</li>
                         <li>Versatile Playmaker: Career TDs against FBS and top FCS programs.</li>
@@ -194,7 +205,7 @@
                 <div class="bio-content">
                     <h3>Landon Ruggieri</h3>
                     <h4>Co-Founder | All-American WR | 2024 Graduate</h4>
-                    <p>Landon is one of the most prolific wide receivers in Bryant University history. A CAA First-Team selection and All-American, he led the nation in receiving touchdowns (15) in 2024. Landon’s career was defined by record-breaking production, finishing second all-time in program history.</p>
+                    <p>Landon is one of the most prolific wide receivers in Bryant University history. A CAA First-Team selection and All-American, he led the nation in receiving touchdowns (15) in 2024.</p>
                     <ul class="stats-list">
                         <li>Nation-Leader: #1 in D1 (FCS) receiving touchdowns in 2024.</li>
                         <li>Record Setter: Set the DI program record for single-season receptions (69).</li>
@@ -209,21 +220,21 @@
 <section id="clients" style="padding: 60px 0; background: #111;">
     <div class="container">
         <h2 style="text-align: center; margin-bottom: 40px; color: white;">Our Clients</h2>
-        <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; justify-content: center;">
             
             <div class="service-card" style="padding: 20px; text-align: left; background: #1a1a1a; border: 1px solid #333; border-radius: 10px; max-width: 400px; margin: 0 auto;">
                 <div style="height: 250px; background: #222; margin-bottom: 15px; border-radius: 5px; overflow: hidden;">
-                <img src="lincoln-fisher.jpg" alt="Lincoln Fisher" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                    <img src="lincoln-fisher.jpg" alt="Lincoln Fisher" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
                 </div>
                 <h3 style="font-size: 1.5rem; color: white; margin-bottom: 5px; font-family: sans-serif;">LINCOLN FISHER</h3>
                 <p style="color: #e63946; font-weight: bold; font-size: 1rem; margin-bottom: 10px; text-transform: uppercase;">Wide Receiver | Holy Cross</p>
     
                 <p style="font-size: 0.9rem; line-height: 1.5; color: #bbb; font-family: sans-serif;">
-                Patriot League Rookie of the Week (Oct '25). A dynamic playmaker for the Crusaders. Known for elite ball skills and red-zone reliability.
+                    Patriot League Rookie of the Week (Oct '25). A dynamic playmaker for the Crusaders. Known for elite ball skills and red-zone reliability.
                 </p>
             </div>
 
-            </div>
+        </div>
     </div>
 </section>
 
