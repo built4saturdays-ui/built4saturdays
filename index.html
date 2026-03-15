@@ -38,8 +38,17 @@
             z-index: 1000;
         }
 
-        /* CHANGE: Made logo circular */
-        .nav-logo img { height: 45px; width: 45px; object-fit: cover; border-radius: 50%; vertical-align: middle; border: 1px solid var(--accent-gray); }
+        /* Faded Logo Style */
+        .faded-logo {
+            object-fit: cover;
+            border-radius: 50%;
+            /* This creates the "fade out" effect on the edges */
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
+        }
+
+        .nav-logo img { height: 45px; width: 45px; }
 
         .nav-links a {
             color: white;
@@ -59,7 +68,7 @@
         .container { max-width: 1200px; margin: auto; }
         h2 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 30px; border-left: 5px solid var(--primary-red); padding-left: 15px; }
 
-        /* Header / Home */
+        /* Hero */
         .hero {
             height: 90vh;
             display: flex;
@@ -72,12 +81,18 @@
             background-position: center;
         }
 
-        /* CHANGE: Made main hero logo circular */
-        .hero .main-logo { max-width: 300px; width: 300px; height: 300px; object-fit: cover; border-radius: 50%; margin-bottom: 30px; filter: drop-shadow(0px 0px 20px rgba(211, 47, 47, 0.4)); border: 2px solid var(--primary-red); }
+        .hero .main-logo { 
+            max-width: 300px; 
+            width: 300px; 
+            height: 300px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 0 50px 20px rgba(0,0,0,0.9); /* Enhances the fade into the dark background */
+        }
+        
         .hero h1 { display: none; } 
         .hero p { max-width: 800px; font-size: 1.3rem; color: var(--text-light); font-weight: 300; letter-spacing: 0.5px; }
 
-        /* Services Grid */
+        /* Services & Athlete Grids */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -97,17 +112,37 @@
         .service-card i { font-size: 3.5rem; color: var(--primary-red); margin-bottom: 20px; }
         .service-card h3 { text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; font-size: 1.5rem; }
 
-        /* About Section */
+        /* Partners Section */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+            margin-top: 40px;
+        }
+
+        .partner-logo {
+            max-width: 140px;
+            filter: grayscale(100%) brightness(0.8);
+            transition: 0.3s;
+            opacity: 0.7;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* About & Team */
         .team-photo-main { width: 100%; height: 500px; object-fit: cover; margin: 40px 0; border: 1px solid var(--accent-gray); }
         .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; }
         .bio-img { width: 100%; height: 450px; object-fit: cover; border-bottom: 4px solid var(--primary-red); margin-bottom: 20px; }
         .bio-content h3 { font-size: 1.8rem; text-transform: uppercase; color: var(--primary-red); }
         .bio-content h4 { font-weight: 400; margin-bottom: 15px; color: var(--text-dim); }
-        .stats-list { list-style: none; margin-top: 15px; }
-        .stats-list li { margin-bottom: 8px; font-weight: bold; }
-        .stats-list li::before { content: "• "; color: var(--primary-red); }
 
-        /* Form */
+        /* Form Styling */
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; }
         form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         form input, form select, form textarea { background: #000; border: 1px solid var(--accent-gray); padding: 15px; color: white; width: 100%; }
@@ -116,22 +151,18 @@
         form button:hover { background: #b22828; }
 
         footer { text-align: center; padding: 60px; background: #000; border-top: 1px solid var(--accent-gray); color: var(--text-dim); }
-        /* CHANGE: Made footer logo circular */
-        footer img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 20px; opacity: 0.6; }
+        footer .footer-logo { width: 80px; height: 80px; margin-bottom: 20px; opacity: 0.6; }
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            /* CHANGE: Centered all text and elements for mobile */
             body, html { overflow-x: hidden; }
             section { padding: 60px 5%; text-align: center; }
             h2 { border-left: none; border-bottom: 3px solid var(--primary-red); padding-left: 0; padding-bottom: 10px; display: inline-block; }
-            
             .hero .main-logo { max-width: 220px; height: 220px; }
             .team-grid, .contact-wrapper { grid-template-columns: 1fr; }
             form { grid-template-columns: 1fr; }
             form button, form .full-width { grid-column: span 1; }
-            nav { justify-content: center; flex-direction: column; gap: 15px; text-align: center; }
-            .nav-links { margin: 0; padding: 0; }
+            nav { justify-content: center; flex-direction: column; gap: 15px; }
             .nav-links a { margin: 0 10px; font-size: 0.75rem; }
         }
     </style>
@@ -140,18 +171,19 @@
 
 <nav>
     <div class="nav-logo">
-        <img src="logo.jpg" alt="B4S Logo">
+        <img src="logo.jpg" alt="B4S Logo" class="faded-logo">
     </div>
     <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#clients">Clients</a>
+        <a href="#athletes">Athletes</a>
+        <a href="#partners">Partners</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
 
 <header id="home" class="hero">
-    <img src="logo.jpg" alt="Built For Saturdays" class="main-logo">
+    <img src="logo.jpg" alt="Built For Saturdays" class="main-logo faded-logo">
     <h1>Built For Saturdays</h1>
     <p>As former Division 1 athletes, we bring firsthand insight into what it takes to build and protect a student-athlete’s NIL value.</p>
 </header>
@@ -159,8 +191,7 @@
 <section id="goal">
     <div class="container" style="text-align: center;">
         <h2>Our Goal</h2>
-        <p style="font-size: 1.5rem; max-width: 900px; margin: auto; font-weight: 300;">“We help athletes turn NIL into lasting opportunity through smart strategy, brand alignment, and disciplined execution—built for today, positioned for what’s next.”</p>
-        
+        <p style="font-size: 1.5rem; max-width: 900px; margin: auto; font-weight: 300;">“We help athletes turn NIL into lasting opportunity through smart strategy, brand alignment, and disciplined execution.”</p>
         <div class="services-grid">
             <div class="service-card">
                 <i class="fas fa-user-check"></i>
@@ -181,59 +212,54 @@
 <section id="about" style="background: #0f0f0f;">
     <div class="container">
         <h2>Our Story</h2>
-        <p>We are former Division 1 teammates from Bryant University who lived the grind together. We founded Built For Saturdays to bridge the gap between locker room reality and NIL opportunity. By combining a record-breaking All-American career with deep strategic experience, we provide athletes the blueprint to build, monetize, and protect their brands from the college level to the pros.</p>
-        
+        <p>We are former Division 1 teammates from Bryant University who lived the grind together. We founded Built For Saturdays to bridge the gap between locker room reality and NIL opportunity.</p>
         <img src="team.jpg" alt="Marc and Landon" class="team-photo-main" onerror="this.style.display='none'">
-
         <div class="team-grid">
             <div class="bio-card">
                 <img src="marc.jpg" alt="Marc Taglieri" class="bio-img" onerror="this.src='https://via.placeholder.com/400x500?text=MARC+PHOTO'">
                 <div class="bio-content">
                     <h3>Marc Taglieri</h3>
                     <h4>Co-Founder | 2024 Graduate</h4>
-                    <p>Marc brings a high football IQ and a reputation for disciplined execution to the NIL space. A four-year letter winner at Tight End for Bryant University with an MBA.</p>
-                    <ul class="stats-list">
-                        <li>D1 Veteran: 39+ games played at the Division 1 level.</li>
-                        <li>Versatile Playmaker: Career TDs against FBS and top FCS programs.</li>
-                        <li>Academic Leader: Multiple NEC Academic Honor Roll selections.</li>
-                    </ul>
+                    <p>A four-year letter winner at Tight End for Bryant University with an MBA. Marc brings high football IQ and disciplined execution to the NIL space.</p>
                 </div>
             </div>
-
             <div class="bio-card">
                 <img src="landon.jpg" alt="Landon Ruggieri" class="bio-img" onerror="this.src='https://via.placeholder.com/400x500?text=LANDON+PHOTO'">
                 <div class="bio-content">
                     <h3>Landon Ruggieri</h3>
-                    <h4>Co-Founder | All-American WR | 2024 Graduate</h4>
-                    <p>Landon is one of the most prolific wide receivers in Bryant University history. A CAA First-Team selection and All-American, he led the nation in receiving touchdowns (15) in 2024.</p>
-                    <ul class="stats-list">
-                        <li>Nation-Leader: #1 in D1 (FCS) receiving touchdowns in 2024.</li>
-                        <li>Record Setter: Set the DI program record for single-season receptions (69).</li>
-                        <li>Elite Honors: All-American, 2x All-New England, and First-Team All-CAA.</li>
-                    </ul>
+                    <h4>Co-Founder | All-American WR</h4>
+                    <p>A CAA First-Team selection and All-American who led the nation in receiving touchdowns (15) in 2024. Prolific playmaker with deep ties across the FCS.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="clients" style="padding: 60px 0; background: #111;">
+<section id="athletes" style="padding: 100px 0; background: #111;">
     <div class="container">
-        <h2 style="text-align: center; margin-bottom: 40px; color: white;">Our Clients</h2>
+        <h2 style="text-align: center; margin-bottom: 40px; color: white;">Our Athletes</h2>
         <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; justify-content: center;">
-            
             <div class="service-card" style="padding: 20px; text-align: left; background: #1a1a1a; border: 1px solid #333; border-radius: 10px; max-width: 400px; margin: 0 auto;">
                 <div style="height: 250px; background: #222; margin-bottom: 15px; border-radius: 5px; overflow: hidden;">
                     <img src="lincoln-fisher.jpg" alt="Lincoln Fisher" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
                 </div>
-                <h3 style="font-size: 1.5rem; color: white; margin-bottom: 5px; font-family: sans-serif;">LINCOLN FISHER</h3>
+                <h3 style="font-size: 1.5rem; color: white; margin-bottom: 5px;">LINCOLN FISHER</h3>
                 <p style="color: #e63946; font-weight: bold; font-size: 1rem; margin-bottom: 10px; text-transform: uppercase;">Wide Receiver | Holy Cross</p>
-    
-                <p style="font-size: 0.9rem; line-height: 1.5; color: #bbb; font-family: sans-serif;">
-                    Patriot League Rookie of the Week (Oct '25). A dynamic playmaker for the Crusaders. Known for elite ball skills and red-zone reliability.
-                </p>
+                <p style="font-size: 0.9rem; line-height: 1.5; color: #bbb;">Patriot League Rookie of the Week (Oct '25). A dynamic playmaker for the Crusaders. Known for elite ball skills.</p>
             </div>
+        </div>
+    </div>
+</section>
 
+<section id="partners" style="background: #0a0a0a; border-top: 1px solid #222;">
+    <div class="container" style="text-align: center;">
+        <h2 style="display: inline-block;">Official Partners</h2>
+        <p style="color: var(--text-dim); margin-bottom: 40px;">Strategic brand alignments and NIL sponsors.</p>
+        <div class="partners-grid">
+            <img src="https://via.placeholder.com/200x100?text=Sponsor+1" alt="Partner Logo" class="partner-logo">
+            <img src="https://via.placeholder.com/200x100?text=Sponsor+2" alt="Partner Logo" class="partner-logo">
+            <img src="https://via.placeholder.com/200x100?text=Sponsor+3" alt="Partner Logo" class="partner-logo">
+            <img src="https://via.placeholder.com/200x100?text=Sponsor+4" alt="Partner Logo" class="partner-logo">
         </div>
     </div>
 </section>
@@ -243,28 +269,16 @@
         <div class="contact-wrapper">
             <div>
                 <h2>Contact Us</h2>
-                <p style="margin-bottom: 30px; color: var(--text-dim);">Ready to protect and grow your NIL value? Reach out to the team at Built For Saturdays.</p>
+                <p style="margin-bottom: 30px; color: var(--text-dim);">Ready to protect and grow your NIL value?</p>
                 <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="color: var(--primary-red); width: 25px;"></i> built4saturdays@gmail.com</p>
                 <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--primary-red); width: 25px;"></i> 239-470-5512</p>
-                <p><i class="fas fa-map-marker-alt" style="color: var(--primary-red); width: 25px;"></i> 97A Robey Street, Dorchester, MA 02125</p>
             </div>
-
             <form action="https://formspree.io/f/mqelbrbe" method="POST">
                 <input type="text" name="name" placeholder="Full Name" required>
                 <input type="number" name="age" placeholder="Age">
-                <input type="text" name="height" placeholder="Height">
-                <input type="text" name="weight" placeholder="Weight">
                 <input type="tel" name="phone" placeholder="Phone Number" required>
                 <input type="email" name="email" placeholder="Email Address" required class="full-width">
-                <input type="text" name="address" placeholder="Address" class="full-width">
-                <input type="text" name="school_name" placeholder="School Name">
-                <select name="school_type">
-                    <option value="high-school">High School</option>
-                    <option value="college">College</option>
-                </select>
-                <input type="text" name="sport" placeholder="Sport">
-                <input type="text" name="position" placeholder="Position Played">
-                <textarea name="social_links" placeholder="Social Media Links (Instagram, TikTok, Twitter, Facebook)" rows="4" class="full-width"></textarea>
+                <input type="text" name="school_name" placeholder="School Name" class="full-width">
                 <button type="submit">Submit Recruitment Form</button>
             </form>
         </div>
@@ -272,8 +286,8 @@
 </section>
 
 <footer>
-    <img src="logo.jpg" alt="B4S Logo">
-    <p>&copy; 2024 Built For Saturdays | All Rights Reserved</p>
+    <img src="logo.jpg" alt="B4S Logo" class="faded-logo footer-logo">
+    <p>&copy; 2026 Built For Saturdays | All Rights Reserved</p>
 </footer>
 
 </body>
