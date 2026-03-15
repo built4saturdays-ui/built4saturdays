@@ -121,19 +121,25 @@
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            /* CHANGE: Centered all text and elements for mobile */
-            body, html { overflow-x: hidden; }
-            section { padding: 60px 5%; text-align: center; }
-            h2 { border-left: none; border-bottom: 3px solid var(--primary-red); padding-left: 0; padding-bottom: 10px; display: inline-block; }
-            
-            .hero .main-logo { max-width: 220px; height: 220px; }
-            .team-grid, .contact-wrapper { grid-template-columns: 1fr; }
-            form { grid-template-columns: 1fr; }
-            form button, form .full-width { grid-column: span 1; }
-            nav { justify-content: center; flex-direction: column; gap: 15px; text-align: center; }
-            .nav-links { margin: 0; padding: 0; }
-            .nav-links a { margin: 0 10px; font-size: 0.75rem; }
-        }
+    nav {
+        flex-direction: column !important; /* Stacks logo on top of links */
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 15px 0 !important;
+    }
+
+    .nav-links {
+        margin: 10px 0 0 0 !important; /* Adds space under the logo */
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    .nav-links a {
+        margin: 0 8px !important; /* Tightens the spacing so they don't wrap weirdly */
+        font-size: 0.75rem !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -153,7 +159,7 @@
 <header id="home" class="hero">
     <img src="logo.jpg" alt="Built For Saturdays" class="main-logo">
     <h1>Built For Saturdays</h1>
-    <p>As former Division 1 athletes, we bring firsthand insight into what it takes to build and protect a student-athlete’s NIL value.</p>
+    <p>As former Division 1 athletes, we bring firsthand insight into what it takes to build and protect a student-athlete’s value.</p>
 </header>
 
 <section id="goal">
@@ -190,12 +196,8 @@
                 <img src="marc.jpg" alt="Marc Taglieri" class="bio-img" onerror="this.src='https://via.placeholder.com/400x500?text=MARC+PHOTO'">
                 <div class="bio-content">
                     <h3>Marc Taglieri</h3>
-                    <h4>Co-Founder | 2024 Graduate</h4>
-                    <p>Marc brings a high football IQ and a reputation for disciplined execution to the NIL space. A four-year letter winner at Tight End for Bryant University with an MBA.</p>
-                    <ul class="stats-list">
-                        <li>D1 Veteran: 39+ games played at the Division 1 level.</li>
-                        <li>Versatile Playmaker: Career TDs against FBS and top FCS programs.</li>
-                        <li>Academic Leader: Multiple NEC Academic Honor Roll selections.</li>
+                    <h4>Co-Founder | 2025 MBA Graduate</h4>
+                    <p>Former D1 Tight End with 5 years of experience, holding an MBA with a background in Finance and Supply Chain. He leverages his technical expertise to provide athletes with high-level NIL strategy and business oversight.</p>
                     </ul>
                 </div>
             </div>
@@ -204,12 +206,9 @@
                 <img src="landon.jpg" alt="Landon Ruggieri" class="bio-img" onerror="this.src='https://via.placeholder.com/400x500?text=LANDON+PHOTO'">
                 <div class="bio-content">
                     <h3>Landon Ruggieri</h3>
-                    <h4>Co-Founder | All-American WR | 2024 Graduate</h4>
-                    <p>Landon is one of the most prolific wide receivers in Bryant University history. A CAA First-Team selection and All-American, he led the nation in receiving touchdowns (15) in 2024.</p>
+                    <h4>Co-Founder | Former All-American WR </h4>
+                    <p>All-American and the 2024 nation-leader in receiving touchdowns, Landon was invited to and participated in Rookie Mini Camps with both the New England Patriots and New York Giants, bringing experience to navigating the professional path.</p>
                     <ul class="stats-list">
-                        <li>Nation-Leader: #1 in D1 (FCS) receiving touchdowns in 2024.</li>
-                        <li>Record Setter: Set the DI program record for single-season receptions (69).</li>
-                        <li>Elite Honors: All-American, 2x All-New England, and First-Team All-CAA.</li>
                     </ul>
                 </div>
             </div>
